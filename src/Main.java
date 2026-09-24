@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -22,6 +23,15 @@ class Main{
         for (var i : characters.entrySet()){
             System.out.println(i.getKey() + " - " + (((double)i.getValue())/totalCharacters)*100);
         }
+    }
+
+    public static void indexFolder(String folder) throws IOException{
+        File dir = new File(folder);
+        String[] files = dir.list();
+
+        for (String s : files){
+            indexFile(folder+"/"+s);
+        }
 
     }
 
@@ -29,5 +39,7 @@ class Main{
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
         indexFile(userInput);
+        userInput = sc.nextLine(); // /run/media/Nikolay/46E1-BAEE/ArchLinuxVM/Logs
+        indexFolder(userInput);
     }
 }
